@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Your Form Title</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <style>
+        .main {
+            background-color: lightblue;
+            padding: 20px 20px;
+            background: #f1f2f3;
+            margin: 40px;
+            border-top: 3px solid #1f3058;
+            border-radius: 4px;
+            width:1100px;
+            
+        }
+            .main input {
+                margin: 15px;
+                width: 80%;
+                border-radius: 3px;
+                border: 1px solid #ddd;
+                box-shadow: inset  1px 1px rgba(0,0,0,0.1); 
+            }
+
+            .main label {         
+                font-size: 15px;
+                text-align: right;
+                display: inline-block;
+                width: 150px;
+            }
+        .main select{
+            margin:20px;
+            width:80%
+        }
+        figcaption{
+            margin-left:150px;
+        }
+        h3{
+            margin-left:120px;
+        }
+        .main textarea{
+            width:50%;            
+        }
+        .btn_input{
+            margin-left:120px;
+        }
+        .btn_input button {
+            color: white;
+            background-color: #1f3058;
+            border: none;
+            border-radius: 3px;
+            width: 90px;
+            height: 30px;
+        }
+        .block {
+            margin: 15px 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+        }
+        .block label {
+            flex: 1;
+        }
+        .block textarea {
+            flex: 3;
+            border-radius:3px;
+            border:1px solid #ddd;
+            margin-left:35px;
+        }
+        .btn_input button:hover {
+            background-color: #1f3075;
+        }
+        .main input:focus {
+            box-shadow: 0 0 5px 2px rgba(173, 216, 230, 1);
+            outline: none;
+        }
+        .main textarea:focus {
+            box-shadow: 0 0 5px 2px rgba(173, 216, 230, 1);
+            outline: none;
+        }
+        .support_form {
+            display: flex;
+            align-items: center; /* Выравниваем элементы по вертикали */
+            margin-bottom: 10px; /* Добавляем небольшой отступ между блоками */
+        }
+
+        .main select:focus {
+            box-shadow: 0 0 5px 2px rgba(173, 216, 230, 1);
+            outline: none;
+        }
+        .main select {
+            border-radius: 3px;
+            border: 1px solid #ddd;
+            box-shadow: inset 1px 1px rgba(0,0,0,0.1);
+        }
+       .main 
+    </style>
+</head>
+<body>
+
+    <div class="container mt-5">
+
+        <form id="form" method="post" action="{%url 'index'%}">
+            <div class="main">
+                <h3>1. Enter gift amount</h3>
+                
+                <div class="btn_input">
+                    <button type="button" onclick="fillFields('20' )">20 USD</button>
+                    <button type="button" onclick="fillFields('50' )">50 USD</button>
+                    <button type="button" onclick="fillFields('100' )">100 USD</button>
+                    <button type="button" onclick="fillFields('500' )">500 USD</button>
+                    <button type="button" onclick="fillFields('1000' )">1000 USD</button>
+                    <input style="width:100px" type="number" id="another" name="another" oninput="callTwoFunctions('D', this.value)" placeholder="other(usd)">
+                </div>
+                <figure>
+
+                    <label for="currencyA">Kygyz<span style="color:red">*</span></label>
+		    <input type="number" id="currencyA" name="currencyA" oninput="callTwoFunctions('A', this.value)" required><br />
+                    <label  for="currencyB">USD**</label>
+		    <input type="number" id="currencyB" name="currencyB" oninput="callTwoFunctions('B', this.value)" required><br />
+                    <label  for="currencyC">Euro**</label>
+	          <input type="number" id="currencyC" name="currencyC" oninput="callTwoFunctions('C', this.value)" required><br />
+                    <figcaption>
+                        <span style="font-size:15px">
+                            PAYMENT SUMMARY<br />
+                            <span style="font-weight:bold">You will be charged <span id="outputText"></span>  KGS. </span>This is a one-time gift.<br /><br />
+                            ** According to the requirements of the legislation of the Kyrgyz Republic, the amount of your contribution can only be withdrawn in the national currency - Kyrgyz Som (KGS).<br /><br /><span style="font-weight:bold;">
+                                At the moment we accept payments only with a VISA card and Kyrgyz national ELCART payment card.<br /><br />
+                            </span>
+                            Visa payment option details: please keep in mind that due to the difference of exchange rate between Visa payment system and Kyrgyz National Bank, your account might be debited slightly more than your original payment.
+                        </span>
+                    </figcaption>
+
+                </figure>
+            </div>
+            <div class="main">
+                <h3>2. Select Fund category</h3>
+                <label for="id_Fund">Fund Category<span style="color:red">*</span></label>
+                   <select id="id_Fund" name="Fund">
+                       <option value="" selected disabled>Select Fund</option>
+   		 </select>
+            </div>
+            <div class="main">
+                <h3>3. Enter Your Contact Information</h3>
+                <label for="id_Confirm_Email" >Email <span style="color:red;font-weight:bold ">*</span></label>
+                 <input type="email" id="id_Confirm_Email" name="Confirm_Email" required><br />
+                <label  for="id_Confirm_Email">Confirm Email <span style="color: red;font-weight:bold">*</span></label>
+		 <input type="email" id="id_Confirm_Email" name="Confirm_Email" required><br />
+                <label for="id_First_name">First Name <span style="color: red; font-weight: bold">*</span></label>
+                 <input type="email" id="id_Confirm_Email" name="Confirm_Email" required><br />
+                <label for="id_Last_name">LastName <span style="color: red; font-weight: bold">*</span></label>
+                 <input type="text" id="id_Last_name" name="Last_name" maxlength="40" required><br />
+		 <label for="id_Connection">Connection:</label>
+         <select id="id_Connection" name="Connection">
+             <option value="" selected disabled>Select Connection</option>
+
+         </select>
+		<br/>
+                <label for="id_Country">Counrty</label>
+                    <select id="id_Country" name="Country" required>
+		        <option value="" selected disabled>Select Country</option>
+		
+		    </select>
+                <figure>
+                    <label for="id_Phone_number">Phone number:</label>
+                    <input type="tel" id="id_Phone_number" name="Phone_number" required><br />
+                    <figcaption>
+                        <span style="font-size:15px">
+                            Format: + country code—area code—phone number<br />
+                            Example: +1-415-5552671
+                        </span>
+                    </figcaption>
+                </figure>
+            </div>
+
+            <div class="main">
+                <p><h3>Please give your comments</h3></p>
+                <br />
+                <div class="block">
+                    <label for="Inspired" class="form-label">What inspired you to give today's gift to the AUCA Fund/Alumni Fund?</label>
+                      <textarea id="Inspired" name="Inspired" rows="3" placeholder="What inspired you to give today's gift to the AUCA Fund/Alumni Fund?"></textarea><br>
+                    <br />
+                </div>
+                <div class="block">
+                    <label  for="Comment">Comments</label>
+                    <textarea id="Comment" name="Comments" rows="2" placeholder="Comments"></textarea>
+                </div>
+            </div>
+            <div style="margin: 20px; margin-left: 190px; display: inline-block;">
+                <div class="support_form">
+                    <labelfor="id_Offer">Public offer<span style="color:red">*</span></label>
+                     <input type="checkbox" id="id_Offer" name="Offer">
+                    <label for="offer"><span style="font-size:14px;"> I have read and agree with the Public Offer</span></label><br />
+                </div>
+                <div style=" margin-left: 80px">
+                    <span style="font-weight:bold;font-size:15px">
+                        If you have questions, please contact the Development office,<br />
+                        by phone at +996-312-915000 ext. 104 or email development@auca.kg.
+                    </span>
+                </div>
+            </div>
+            <div style="margin-left:190px;">
+                <button type="submit" style="background-color: red; width: 110px; height: 50px; border-radius: 5px; color: white; border: none;display:inline-block">Submit</button>
+                <div id="resetbutton" style="display: inline-block">
+                    <button type="button" style="background-color:red;width:110px;height:50px;border-radius:5px;color:white;border:none;" onclick="clearForm()">Clear Fields</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.8/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        function clearForm() {
+            document.getElementById("form").reset();
+        }
+    </script>
+    <script>
+        function convertCurrency(source, value) {
+            var rateA = 1.0;
+            var rateB = 89.0;
+            var rateC = 100.0;
+            switch (source) {
+                case 'A':
+                    document.getElementById('currencyB').value = (value / rateB).toFixed(2);
+                    document.getElementById('currencyC').value = (value / rateC).toFixed(2);
+                    break;
+                case 'B':
+                    document.getElementById('currencyA').value = (value * rateB).toFixed(2);
+                    document.getElementById('currencyC').value = (value / 1.08).toFixed(2);
+                    break;
+                case 'C':
+                    document.getElementById('currencyA').value = (value * rateC).toFixed(2);
+                    document.getElementById('currencyB').value = (value * 1.08).toFixed(2);
+                    break;
+                case 'D':
+                    document.getElementById('currencyA').value = (value * rateB).toFixed(2);
+                    document.getElementById('currencyC').value = (value / 1.08).toFixed(2);
+                    document.getElementById('currencyB').value = (value * 1).toFixed(2);
+                    break;
+                default:
+                    break;
+            }
+        }
+    </script>
+    <script>
+
+        function fillFields(value1) {
+            document.getElementById('currencyB').value = '';
+            document.getElementById('another').value = '';
+            document.getElementById('currencyB').value = value1;
+            convertCurrency('B', value1);
+            showOutput();
+        }
+    </script>
+    <script>
+        function showOutput() {
+            var input = document.getElementById("currencyA").value;
+            document.getElementById("outputText").innerText = input;
+        }
+        function callTwoFunctions(currency, value) {
+            convertCurrency(currency, value);
+            showOutput();
+        }
+    </script>
+</body>
+</html>
